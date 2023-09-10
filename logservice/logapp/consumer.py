@@ -28,7 +28,7 @@ class UserCreatedListener(threading.Thread):
             userDetails = json.loads(message)
 
             # Perform any action with the message here 
-            print(userDetails["email"]+ " Just registered")
+            print("Log : "+userDetails["email"]+ " user registered")
 
         channel.basic_ack(delivery_tag=method.delivery_tag)
         
