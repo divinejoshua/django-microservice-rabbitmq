@@ -4,6 +4,7 @@ import threading
 ROUTING_KEY = 'user.created.key'
 EXCHANGE = 'user_exchange'
 THREADS = 5
+QUEUE_NAME = "create.user"
 
 class UserCreatedListener(threading.Thread):
     def __init__(self):
@@ -21,7 +22,7 @@ class UserCreatedListener(threading.Thread):
         #queue_declare() Creates or checks a queue
         #queue='' will cause RabbitMQ to create a unique queue
         #exclusive=True : Only allow access by the current connection
-        result = self.channel.queue_declare(queue='', exclusive=True)
+        result = self.channel.queue_declare(queue=QUEUE_NAME, exclusive=True)
         queue_name = result.method.queue
         
         #Bind the queue to the specified exchange
@@ -44,6 +45,7 @@ class UserCreatedListener(threading.Thread):
             message = json.loads(body)
             # Do What ever with message, In real world we should be
             # sending an Email asynchronously to user
+
             print(message)
         #send acknowledgement back (Good practice)    
         channel.basic_ack(delivery_tag=method.delivery_tag)
