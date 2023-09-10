@@ -4,7 +4,7 @@ import threading
 ROUTING_KEY = 'user.created.key'
 EXCHANGE = 'user_exchange'
 THREADS = 5
-QUEUE_NAME = "create_user"
+QUEUE_NAME = "logg_user_action"
 
 class UserCreatedListener(threading.Thread):
     def __init__(self):
@@ -21,11 +21,14 @@ class UserCreatedListener(threading.Thread):
         self.channel.basic_consume(queue=queue_name, on_message_callback=self.callback)
         
     def callback(self, channel, method, properties, body):
-        
+
         # Get message content 
         if(properties.content_type=="user_created_method"):
             message = json.loads(body)
-            print(message)
+            userDetails = json.loads(message)
+
+            # Perform any action with the message here 
+            print(userDetails["email"]+ " Just registered")
 
         channel.basic_ack(delivery_tag=method.delivery_tag)
         
