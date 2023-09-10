@@ -16,7 +16,6 @@ class ProducerUserCreated:
             pika.ConnectionParameters('localhost', heartbeat=600, blocked_connection_timeout=300)
             )
         self.channel = self.connection.channel()
-        self.channel.queue_declare(queue=ROUTING_KEY, durable=True)
 
     # This method will be called inside view for sending RabbitMQ message
     # method here is same as properties.content_type in listener callback
