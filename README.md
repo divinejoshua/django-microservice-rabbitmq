@@ -7,6 +7,11 @@ This is a django project that has 3 micro serivces all communicationg together w
 pip3 install requirements.txt
 ```
 
+## Start rabbitMq from docker
+```
+docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+```
+
 ## Start the 3 applications in their folders
 ```
 python3 manage.py runserver
