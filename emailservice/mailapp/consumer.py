@@ -51,6 +51,7 @@ class UserCreatedListener(threading.Thread):
             # Convert JSON String to Python
 
             print("Email sent to : "+userDetails['email'])
+            
         #send acknowledgement back (Good practice)    
         channel.basic_ack(delivery_tag=method.delivery_tag)
         
