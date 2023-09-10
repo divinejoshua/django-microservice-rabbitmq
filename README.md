@@ -12,8 +12,13 @@ pip3 install requirements.txt
 docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 ```
 
-## Start the 3 applications in their folders
+## Start the userservice application
 ```
 python3 manage.py runserver
+```
+
+## Start the logservice and emailservice application in their folders
+```
+python3 manage.py launch_queue_listener
 ```
 
