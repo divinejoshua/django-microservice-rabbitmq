@@ -43,10 +43,14 @@ class UserCreatedListener(threading.Thread):
     def callback(self, channel, method, properties, body):
         if(properties.content_type=="user_created_method"):
             message = json.loads(body)
+            userDetails = json.loads(message)
+
             # Do What ever with message, In real world we should be
             # sending an Email asynchronously to user
 
-            print(message)
+            # Convert JSON String to Python
+
+            print("Email sent to : "+userDetails['email'])
         #send acknowledgement back (Good practice)    
         channel.basic_ack(delivery_tag=method.delivery_tag)
         
