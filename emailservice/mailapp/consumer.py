@@ -4,7 +4,7 @@ import threading
 ROUTING_KEY = 'user.created.key'
 EXCHANGE = 'user_exchange'
 THREADS = 5
-QUEUE_NAME = "create.user"
+QUEUE_NAME = "create_user"
 
 class UserCreatedListener(threading.Thread):
     def __init__(self):
